@@ -1,18 +1,15 @@
 terraform {
-  source = "./cognito_user_pool_module"
+  source = "./terraform-aws-cognito-user-pool"
 }
-
+ 
 inputs = {
-  user_pool_name           = "example-user-pool"
-  minimum_password_length  = 12
-  require_lowercase        = true
-  require_numbers          = true
-  require_symbols          = true
-  require_uppercase        = true
-  user_pool_client_name    = "example-client"
-  generate_client_secret   = true
-  allowed_oauth_flows      = ["code"]
-  allowed_oauth_scopes     = ["openid"]
-  callback_urls            = ["https://example.com/callback"]
-  default_redirect_uri     = "https://example.com"
+  enabled                             = true
+  user_pool_name                      = "example-user-pool"
+  alias_attributes                    = ["email"]
+  auto_verified_attributes            = ["email"]
+  email_verification_subject          = "Your temporary password"
+  email_verification_message          = "Your username is {username} and temporary password is {####}."
+  admin_create_user_config_email_subject = "Your temporary password"
+  admin_create_user_config_email_message = "Your username is {username} and temporary password is {####}."
+  # Add other necessary inputs for Cognito User Pool module here
 }
