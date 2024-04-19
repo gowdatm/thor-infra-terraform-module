@@ -1,19 +1,15 @@
 terraform {
-  source = "./terraform-aws-lambda"
-  // Add any necessary version constraints or other Terraform settings here
+  source = "terraform-aws-lambda"
 }
-
+ 
 inputs = {
-  function_name     = "my-lambda-function"
-  description       = "My Lambda Function"
-  role              = "arn:aws:iam::123456789012:role/lambda-role"
-  handler           = "index.handler"
-  runtime           = "nodejs14.x"
-  timeout           = 60
-  memory_size       = 512
-  publish           = true
-  vpc_subnet_ids    = ["subnet-12345678"]
-  vpc_security_group_ids = ["sg-12345678"]
-  
-  // Add any additional inputs here as needed
+  function_name = "my-lambda-existing-package-local"
+  description   = "My awesome lambda function"
+  handler       = "index.lambda_handler"
+  runtime       = "python3.8"
+  create_package      = false
+  s3_existing_package = {
+    bucket = "aws_s3_bucket.builds.id"
+    key    = "aws_s3_object.my_function.id"
+  }
 }
