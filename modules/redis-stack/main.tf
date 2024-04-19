@@ -3,9 +3,9 @@ module "redis" {
 
   availability_zones         = var.availability_zones
   zone_id                    = var.zone_id
-  vpc_id                     = module.vpc.vpc_id
-  allowed_security_group_ids = [module.vpc.vpc_default_security_group_id]
-  subnets                    = module.subnets.private_subnet_ids
+  vpc_id                     = var.vpc_id
+  allowed_security_group_ids = var.allowed_security_group_id
+  subnets                    = var.
   cluster_size               = var.cluster_size
   instance_type              = var.instance_type
   apply_immediately          = true
